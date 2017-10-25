@@ -28,9 +28,6 @@ export class LoginComponent implements OnInit {
         this.cargarDatos();
     }
     onLoggedin() {
-        // console.log(this.name);
-        // console.log(this.pass);
-        // const valido = this._loginService.login(this.name, this.pass);
        this._loginService.login(this.name, this.pass).subscribe((result) => {
 
         this.router.navigate(['/dashboard']);
