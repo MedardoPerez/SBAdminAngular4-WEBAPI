@@ -30,6 +30,8 @@ export class LoginService {
         this.baseUrl = baseUrl ? baseUrl : 'http://localhost:56115';
         this.baseUrlLogin = _baseUrlLogin;
         this.baseUrlLogin = this.baseUrl + '/token';
+        // tslint:disable-next-line:prefer-const
+        let prueba: string;
     }
 
 login(userName, password) {

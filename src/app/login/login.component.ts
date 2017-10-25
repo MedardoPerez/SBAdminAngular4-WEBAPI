@@ -28,27 +28,15 @@ export class LoginComponent implements OnInit {
         this.cargarDatos();
     }
     onLoggedin() {
-
-
         // console.log(this.name);
         // console.log(this.pass);
         // const valido = this._loginService.login(this.name, this.pass);
        this._loginService.login(this.name, this.pass).subscribe((result) => {
-    //     //    this.Islogged = result;
-    //     //    // tslint:disable-next-line:one-line
-    //     //    if (this.Islogged.tieneAcceso === true){
+
         this.router.navigate(['/dashboard']);
         localStorage.setItem('isLoggedin', 'true');
         this.MensajeError = '';
-        //      console.log('Autenticacion Correcta');
-        //   }
-        //   else{
-        //    // this.MensajeError = 'Usuario o Contraseña incorrecta';
-        //    // localStorage.setItem('isLoggedin', 'false');
-        //      console.log('Error de autenticacion');
-        //   }
         }, error => {
-            this.ngOnInit();
             this.MensajeError = 'Usuario o Password incorrecto';
             this.loading = false;
         });
