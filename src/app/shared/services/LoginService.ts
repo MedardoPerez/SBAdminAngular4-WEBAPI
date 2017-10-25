@@ -19,7 +19,6 @@ export const API_BASE_URL = new OpaqueToken('API_BASE_URL');
 @Injectable()
 export class LoginService {
     handleError: any;
-
     private http: Http;
     private baseUrl: string;
     private baseUrlLogin: string;
@@ -32,22 +31,6 @@ export class LoginService {
         this.baseUrlLogin = _baseUrlLogin;
         this.baseUrlLogin = this.baseUrl + '/token';
     }
-
-// loginUser(username: string, password: string) {
-//     const headers = new Headers();
-//     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-//     headers.append('Accept-Language', 'application/json');
-//         const body = 'UserName=' + username + '&Password=' + password + '&grant_type=password';
-//         return this.http.post(this.baseUrlLogin, body, { headers })
-//             .map((response: Response) => {
-//                 // login successful if there's a jwt token in the response
-//                 let user = response.json();
-//                 if (user && user.token) {
-//                     // store user details and jwt token in local storage to keep user logged in between page refreshes                  
-//                     localStorage.setItem('currentUser', JSON.stringify(user));
-//                 }
-//             });
-//     }
 
 login(userName, password) {
         let headers = new Headers();
@@ -115,8 +98,6 @@ login(userName, password) {
     return Observable.of<UserDTO[]>(<any>null);
 }
 }
-
-
 
 export interface IAutenticacionUsuarioDTO {
     access_token: string;
