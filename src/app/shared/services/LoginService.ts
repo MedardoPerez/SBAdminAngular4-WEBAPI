@@ -28,29 +28,26 @@ export class LoginService {
     // tslint:disable-next-line:max-line-length
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string, @Optional() @Inject(API_BASE_URL) _baseUrlLogin?: string) {
         this.http = http;
-        this.baseUrl = baseUrl ? baseUrl : "http://localhost:56115";
+        this.baseUrl = baseUrl ? baseUrl : 'http://localhost:56115';
         this.baseUrlLogin = _baseUrlLogin;
         this.baseUrlLogin = this.baseUrl + '/token';
     }
 
-
-
-loginUser(username: string, password: string) {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Accept-Language', 'application/json');
-        const body = 'UserName=' + username + '&Password=' + password + '&grant_type=password';
-        return this.http.post(this.baseUrlLogin, body, { headers })
-            .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let user = response.json();
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
-            });
-    }
+// loginUser(username: string, password: string) {
+//     const headers = new Headers();
+//     headers.append('Content-Type', 'application/x-www-form-urlencoded');
+//     headers.append('Accept-Language', 'application/json');
+//         const body = 'UserName=' + username + '&Password=' + password + '&grant_type=password';
+//         return this.http.post(this.baseUrlLogin, body, { headers })
+//             .map((response: Response) => {
+//                 // login successful if there's a jwt token in the response
+//                 let user = response.json();
+//                 if (user && user.token) {
+//                     // store user details and jwt token in local storage to keep user logged in between page refreshes                  
+//                     localStorage.setItem('currentUser', JSON.stringify(user));
+//                 }
+//             });
+//     }
 
 login(userName, password) {
         let headers = new Headers();
@@ -64,15 +61,6 @@ login(userName, password) {
                 sessionStorage.setItem('bearer_token', res.bearer_token);
                 sessionStorage.setItem('expires_in', res.expires_in.toString());
                localStorage.setItem('auth_token', res.auth_token);
-               // this.loggedIn = true;
-              // this._authNavStatusSource.next(true);
-            //   const retorno = new AutenticacionUsuarioDTO();
-            //   retorno.access_token = res.access_token;
-            //   retorno.expires_in = res.expires_in;
-            //   retorno.token_type = res.token_type;
-            //   retorno.tieneAcceso = true;
-            //   return retorno;
-              // return true;
              })
              .catch(this.handleError);
        }
